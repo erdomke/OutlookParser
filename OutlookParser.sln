@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookParser", "OutlookParser\OutlookParser.csproj", "{1A4F3B7B-B9FA-46DF-ACD9-B782B3B3CC18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookParser.Console", "..\OutlookParser.Console\OutlookParser.Console.csproj", "{D68DA2FD-16CE-4085-9AA7-DC136CB6B6C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookParser.Console", "OutlookParser.Console\OutlookParser.Console.csproj", "{D68DA2FD-16CE-4085-9AA7-DC136CB6B6C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

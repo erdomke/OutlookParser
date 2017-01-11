@@ -98,13 +98,6 @@
     <Compile Include="Mime\StreamLineReader.cs" />
     <Compile Include="Mime\StringReader.cs" />
     <Compile Include="Mime\TextUtils.cs" />
-    <Compile Include="Model\Email.cs" />
-    <Compile Include="Model\GroupAddress.cs" />
-    <Compile Include="Model\Importance.cs" />
-    <Compile Include="Model\InternetAddress.cs" />
-    <Compile Include="Model\MailboxAddress.cs" />
-    <Compile Include="Model\Priority.cs" />
-    <Compile Include="Model\XPriority.cs" />
     <Compile Include="OutlookParser.cs" />
     <Compile Include="OutlookStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

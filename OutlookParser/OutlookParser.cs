@@ -11,14 +11,14 @@ namespace OutlookParser
 {
   public class OutlookParser
   {
-    private OutlookStorage.Message _msg;
+    private OutlookMessage _msg;
 
     public OutlookParser(Stream stream)
     {
-      _msg = new OutlookStorage.Message(stream);
+      _msg = new OutlookMessage(stream);
     }
     
-    public Email ParseMessage()
+    public MimeMessage ParseMessage()
     {
       //var result = new Email();
       HeaderList headers;
@@ -60,8 +60,7 @@ namespace OutlookParser
         }
         root = alt;
       }
-
-
+      
       if (_msg.Attachments.Any() || _msg.Messages.Any())
       {
         var mixed = new Multipart("mixed");
@@ -76,53 +75,32 @@ namespace OutlookParser
             ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
             ContentTransferEncoding = ContentEncoding.Base64,
             ContentId = attach.ContentId,
-            FileName = attach.Filename,
+            FileName = attach.FileName,
           };
           mixed.Add(mimeAttach);
         }
         
-        foreach (var msg in _msg.Messages)
+        foreach (var message in _msg.Messages)
         {
-          switch (msg.Type)
-          {
-            case MessageType.Email:
-            case MessageType.EmailSms:
-            case MessageType.EmailNonDeliveryReport:
-            case MessageType.EmailDeliveryReport:
-            case MessageType.EmailDelayedDeliveryReport:
-            case MessageType.EmailReadReceipt:
-            case MessageType.EmailNonReadReceipt:
-            case MessageType.EmailEncryptedAndMaybeSigned:
-            case MessageType.EmailEncryptedAndMaybeSignedNonDelivery:
-            case MessageType.EmailEncryptedAndMaybeSignedDelivery:
-            case MessageType.EmailClearSignedReadReceipt:
-            case MessageType.EmailClearSignedNonDelivery:
-            case MessageType.EmailClearSignedDelivery:
-            case MessageType.EmailBmaStub:
-            case MessageType.CiscoUnityVoiceMessage:
-            case MessageType.EmailClearSigned:
+          var stream = new MemoryStream();
+          message.WriteTo(stream);
+          stream.Position = 0;
 
-          }
-          var mimeAttach = new MimePart("application", "octet-stream")
+          var mimeAttach = new MimePart("application", "vnd.ms-outlook")
           {
-            ContentObject = new ContentObject(new MemoryStream(attach.Data)),
+            ContentObject = new ContentObject(stream),
             ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
             ContentTransferEncoding = ContentEncoding.Base64,
-            ContentId = attach.ContentId,
-            FileName = attach.Filename,
+            ContentId = message.MessageId,
+            FileName = (message.Subject ?? "") + ".msg"
           };
           mixed.Add(mimeAttach);
         }
 
-
         root = mixed;
       }
 
-      var result = new MimeMessage(headers, root);
-
-      //result.LoadHeaders(headers);
-
-      return null;
+      return new MimeMessage(headers, root);
     }
   }
 }
