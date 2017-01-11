@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1A4F3B7B-B9FA-46DF-ACD9-B782B3B3CC18}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OutlookParser</RootNamespace>
+    <AssemblyName>OutlookParser</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentTracker.Plugin">
+      <HintPath>..\lib\ComponentTracker.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="DDay.Collections">
+      <HintPath>..\lib\DDay.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="DDay.iCal">
+      <HintPath>..\lib\DDay.iCal.dll</HintPath>
+    </Reference>
+    <Reference Include="Itenso.Rtf.Converter.Html">
+      <HintPath>..\lib\Itenso.Rtf.Converter.Html.dll</HintPath>
+    </Reference>
+    <Reference Include="Itenso.Rtf.Interpreter">
+      <HintPath>..\lib\Itenso.Rtf.Interpreter.dll</HintPath>
+    </Reference>
+    <Reference Include="Itenso.Rtf.Parser">
+      <HintPath>..\lib\Itenso.Rtf.Parser.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MimeKitLite, Version=1.10.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKitLite.1.10.0\lib\net45\MimeKitLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OpenMcdf, Version=2.1.0.33051, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenMcdf.2.1.0.33051\lib\OpenMcdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdEmailResolver.cs" />
+    <Compile Include="MailMessageExtensions.cs" />
+    <Compile Include="MailMessageProcessor.cs" />
+    <Compile Include="MessageBuilder.cs" />
+    <Compile Include="MessageType.cs" />
+    <Compile Include="Mime\Address.cs" />
+    <Compile Include="Mime\AddressList.cs" />
+    <Compile Include="Mime\ContentDisposition_enum.cs" />
+    <Compile Include="Mime\ContentTransferEncoding_enum.cs" />
+    <Compile Include="Mime\GroupAddress.cs" />
+    <Compile Include="Mime\HeaderField.cs" />
+    <Compile Include="Mime\HeaderFieldCollection.cs" />
+    <Compile Include="Mime\HeaderFieldParameter.cs" />
+    <Compile Include="Mime\HeaderFieldParameterCollection.cs" />
+    <Compile Include="Mime\MailboxAddress.cs" />
+    <Compile Include="Mime\MailboxAddressCollection.cs" />
+    <Compile Include="Mime\MediaType_enum.cs" />
+    <Compile Include="Mime\Mime.cs" />
+    <Compile Include="Mime\MimeEntity.cs" />
+    <Compile Include="Mime\MimeEntityCollection.cs" />
+    <Compile Include="Mime\MimeUtils.cs" />
+    <Compile Include="Mime\Net_Core.cs" />
+    <Compile Include="Mime\ParametizedHeaderField.cs" />
+    <Compile Include="Mime\StreamLineReader.cs" />
+    <Compile Include="Mime\StringReader.cs" />
+    <Compile Include="Mime\TextUtils.cs" />
+    <Compile Include="Model\Email.cs" />
+    <Compile Include="Model\GroupAddress.cs" />
+    <Compile Include="Model\Importance.cs" />
+    <Compile Include="Model\InternetAddress.cs" />
+    <Compile Include="Model\MailboxAddress.cs" />
+    <Compile Include="Model\Priority.cs" />
+    <Compile Include="Model\XPriority.cs" />
+    <Compile Include="OutlookParser.cs" />
+    <Compile Include="OutlookStorage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
